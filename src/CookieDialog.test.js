@@ -27,19 +27,7 @@ describe("<CookieDialog />", () => {
   };
 
   afterEach(() => {
-    diContainerMock.analyticsService.getOptInStatus.mockReset();
-    diContainerMock.analyticsService.optIn.mockReset();
-    diContainerMock.analyticsService.optOut.mockReset();
-    diContainerMock.analyticsService.reset.mockReset();
-    diContainerMock.analyticsService.setUserId.mockReset();
-    diContainerMock.analyticsService.track.mockReset();
-    diContainerMock.errorMonitoringService.enableMonitoring.mockReset();
-    diContainerMock.authService.getCredentials.mockReset();
-    diContainerMock.authService.isLoggedIn.mockReset();
-    diContainerMock.authService.isRedirect.mockReset();
-    diContainerMock.authService.login.mockReset();
-    diContainerMock.authService.logout.mockReset();
-    diContainerMock.authService.redirect.mockReset();
+    jest.resetAllMocks();
   });
 
   const render = (ui) => {
@@ -61,7 +49,7 @@ describe("<CookieDialog />", () => {
     render(<CookieDialog />);
 
     expect(
-      screen.getByRole("heading", {
+      await screen.findByRole("heading", {
         name: /i'm the title of the dialog/i,
       })
     ).toBeInTheDocument();
